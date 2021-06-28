@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <h3 class="bg-primary text-white">[{{getUser()}}] Todo uygulamasi</h3>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" #todoText >
+                <button class="btn btn-outline-primary" type="button" (click)="addItem(todoText.value); todoText.value = '';">Button</button>
+            </div>
+        </div>
+    </div>
+  
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="form-check my-2">
+                <input class="form-check-input" type="checkbox" value="" id="displayAll" [(ngModel)]="isDisplay">
+                <label class="form-check-label" for="displayAll">
+                  Display All
+                </label>
+            </div>
+            <table class="table table-stripped table-bordered">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Description</th>
+                        <th>Action</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of getItems(); let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{item.description}}</td>
+                        <td><input type="checkbox" [(ngModel)]="item.action"/></td>
+                        <td  [ngSwitch]="item.action">
+                            <span *ngSwitchCase="true">Yes</span>
+                            <span *ngSwitchCase="false">No</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>
